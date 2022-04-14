@@ -3,8 +3,8 @@ A Reusable Learning Object (RLO) to visualize AI Search Techniques
 
 This widget needs the following modules to be installed:
 
-tkinter
-heapdict
+1) tkinter
+2) heapdict
 
 Clone the repo and in the root directory, run 'python create_grid.py' to start the widget
 
