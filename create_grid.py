@@ -76,13 +76,13 @@ board = ttk.Frame(root, padding=30)
 
 radio_var = IntVar()
 
-rLabel = Label(frm, text="Enter the Number of rows (max=15): ")
+rLabel = Label(frm, text="Enter the Number of rows (max=10): ", font=(None, 10, 'bold'))
 rLabel.grid(row=0, column=0)
 
 e1 = Entry(frm, width=50)
 e1.grid(row=0, column=1)
 
-cLabel = Label(frm, text="Enter the Number of columns (max=15): ")
+cLabel = Label(frm, text="Enter the Number of columns (max=10): ", font=(None, 10, 'bold'))
 cLabel.grid(row=1, column=0)
 
 e2 = Entry(frm, width=50)
@@ -117,14 +117,14 @@ def createBoard():
     grid = []
     if((M == '' or N == '') or (int(M)*int(N) == 1)):
         gridworld.set_params(grid)
-        messagebox.showerror("error", "Enter values for the dimensions of the grid")
+        messagebox.showerror("error", "Enter valid values for the dimensions of the grid")
     else:
         board = ttk.Frame(root, padding=30)
         board.grid()
         M, N = int(M), int(N)
-        if(M > 15 or N > 15):
-            M, N = min(M, 15), min(N, 15)
-            messagebox.showwarning("Warning", "Dimensions were clipped to the max value, 15")
+        if(M > 10 or N > 10):
+            M, N = min(M, 10), min(N, 10)
+            messagebox.showwarning("Warning", "Dimensions were clipped to the max value, 10")
         for r in range(int(M)):
             grid.append([])
             for c in range(int(N)):
@@ -159,7 +159,7 @@ def createBoard():
         aStarButton.grid(row=3, column = N+2, columnspan=2)
         radio_l1 = Radiobutton(board,text='L1-Norm', value=1,variable = radio_var)
         radio_l1.grid(row=3, column = N+4, columnspan=2)
-        radio_l2_squared = Radiobutton(board,text='Squared L2-norm', value=2,variable = radio_var)
+        radio_l2_squared = Radiobutton(board,text='L2-norm', value=2,variable = radio_var)
         radio_l2_squared.grid(row=3, column = N+6, columnspan=2)
         resetButton = Button(board, text="Reset Board", command=resetBoard)
         resetButton.grid(row=4, column = N+2, columnspan=2)
@@ -169,6 +169,34 @@ def createBoard():
 
 dimButton = Button(frm, text="Submit Dimensions", command = createBoard)
 dimButton.grid(row=4, column=1)
+
+legend = Label(frm, text=' Legend', font=(None, 10, 'bold'))
+legend.grid(row=5, column=0)
+
+freebutton = Button(frm, bg='white', width=3, padx=5, pady=5,state="disabled")
+freebutton.grid(row=6, column=0)
+freelabel = Label(frm, text=' => Free cell', font=(None, 10, 'bold'))
+freelabel.grid(row=6, column=1)
+obsbutton = Button(frm, bg='black', width=3, padx=5, pady=5,state="disabled")
+obsbutton.grid(row=7, column=0)
+obslabel = Label(frm, text=' => Obstacle cell', font=(None, 10, 'bold'))
+obslabel.grid(row=7, column=1)
+srcbutton = Button(frm, bg='green', width=3, padx=5, pady=5,state="disabled")
+srcbutton.grid(row=8, column=0)
+srclabel = Label(frm, text=' => Start cell', font=(None, 10, 'bold'))
+srclabel.grid(row=8, column=1)
+dstbutton = Button(frm, bg='red', width=3, padx=5, pady=5,state="disabled")
+dstbutton.grid(row=9, column=0)
+dstlabel = Label(frm, text=' => Goal cell', font=(None, 10, 'bold'))
+dstlabel.grid(row=9, column=1)
+hpushbutton = Button(frm, bg='yellow', width=3, padx=5, pady=5,state="disabled")
+hpushbutton.grid(row=10, column=0)
+hpushlabel = Label(frm, text=' => Added to queue', font=(None, 10, 'bold'))
+hpushlabel.grid(row=10, column=1)
+hpopbutton = Button(frm, bg='magenta', width=3, padx=5, pady=5,state="disabled")
+hpopbutton.grid(row=11, column=0)
+hpoplabel = Label(frm, text=' => Evaluated cell (Popped from queue)', font=(None, 10, 'bold'))
+hpoplabel.grid(row=11, column=1)
 
 root.mainloop()
 
