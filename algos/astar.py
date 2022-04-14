@@ -1,6 +1,7 @@
 from heapdict import heapdict
 import time, math, parse
 from tkinter import messagebox
+import math
 
 class AStar(object):
     def __init__(self, gridworld):
@@ -20,7 +21,7 @@ class AStar(object):
 
     def heuristic_cost(self, cs, gs, hvar):
         (gr, gc), (cr, cc) = gs, cs
-        cost = ((cr-gr)**2 + (cc-gc)**2) if(hvar == 2) else (abs(cr-gr) + abs(cc-gc))
+        cost = math.sqrt((cr-gr)**2 + (cc-gc)**2) if(hvar == 2) else (abs(cr-gr) + abs(cc-gc))
         return cost
 
     def search(self, hvar):
@@ -30,7 +31,7 @@ class AStar(object):
         sr, sc = self.src
         gr, gc = self.dest
         if(hvar == 0):
-            messagebox.showerror("error", "Enter values for the dimensions of the grid")
+            messagebox.showerror("error", "Select a Heuristic for the A-star search")
             return
         # Tuple of total cost, path cost, heuristic cost
         self.pq[sr,sc] = (0,0,0)
