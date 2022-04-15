@@ -39,6 +39,10 @@ class GridWorld(object):
     def _toggle(self, row, col, trgt):
         self.states[row][col] = trgt
         self.grid[row][col].configure(bg= self.cmap[trgt])
+        self.grid[row][col].configure(activebackground= self.cmap[trgt])
+        if trgt == 0:
+            self.grid[row][col].configure(activebackground= '#ececec')
+
         self.grid[row][col].update()
 
     def user_toggle(self, row, col):
@@ -128,7 +132,8 @@ def createBoard():
         for r in range(int(M)):
             grid.append([])
             for c in range(int(N)):
-                cell = Button(board, bg='white', width=3, padx=20, pady=10, command=lambda r=r, c=c: gridworld.user_toggle(r, c))
+                cell = Button(board, bg='white', activebackground= '#ececec',
+                              width=3, padx=20, pady=10, command=lambda r=r, c=c: gridworld.user_toggle(r, c))
                 grid[r].append(cell)
                 cell.grid(row=r, column=c)
 
