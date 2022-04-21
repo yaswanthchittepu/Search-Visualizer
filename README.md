@@ -1,10 +1,10 @@
 # Search-Visualizer
 A Reusable Learning Object (RLO) to visualize AI Search Techniques
 
-This widget needs the following modules to be installed:
+This widget needs python (version >=3.0) and the following modules, which can be installed through pip:
 
-1) tkinter
-2) heapdict
+1) tkinter  (https://tkdocs.com/tutorial/install.html)
+2) heapdict (https://pypi.org/project/HeapDict/)
 
 Clone the repo and in the root directory, run 'python create_grid.py' to start the widget
 
